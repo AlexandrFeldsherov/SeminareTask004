@@ -15,26 +15,33 @@ public class Task002 {
      * Output: false
      */
     public static void main(String[] args) {
-        String str = ("(]");
+        String str = ("()[]{}");
         String[] valArr = str.split("");
         System.out.println("isValid(valArr) = " + isValid(valArr));
     }
 
     public static boolean isValid(String[] s) {
         Boolean a = false;
-        for (int i = 0; i < s.length-1; i++) {
-            if (s[i].contains("(")) {
-                if (s[i + 1].contains(")")) {
-                } else return false;
+        for (int i = 0; i < s.length - 1; i++) {
+            if (i == 0) {
+                if (s[i].contains("}") || s[i].contains("]") || s[i].contains(")")) {
+                    return false;
+                }
+
+                if (s[i].contains("(")) {
+                    if (s[i + 1].contains(")")) {
+                    } else return false;
+                }
+                if (s[i].contains("{")) {
+                    if (s[i + 1].contains("}")) {
+                    } else return false;
+                }
+                if (s[i].contains("[")) {
+                    if (s[i + 1].contains("]")) {
+                    } else return false;
+                }
             }
-            if (s[i].contains("{")) {
-                if (s[i + 1].contains("}")) {
-                } else return false;
-            }
-            if (s[i].contains("[")) {
-                if (s[i + 1].contains("]")) {
-                } else return false;
-            }
+            return true;
         }
         return true;
     }
